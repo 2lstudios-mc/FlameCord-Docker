@@ -12,7 +12,7 @@ echo "=================================="
 
 while true
 do
-    java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XX:+UseG1GC -XX:+DisableExplicitGC -jar ${JAR}
+    java -XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -XX:MaxRAMFraction=1 -XX:+UseG1GC -XX:+DisableExplicitGC -jar ${JAR}
     if [ "$RESTART" = "true" ]; then
         echo "Server stopped, restarting instance in 3 seconds..."
         sleep 3
