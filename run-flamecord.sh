@@ -4,7 +4,7 @@ CFG="config.yml"
 URL="https://ci.2lstudios.dev/job/FlameCord/lastSuccessfulBuild/artifact/FlameCord-Proxy/bootstrap/target/FlameCord.jar"
 
 echo "====== FlameCord Dockerized ======"
-echo "Memory: $MEMORY"
+# echo "Memory: $MEMORY"
 echo "Restart on end: $RESTART"
 echo "=================================="
 
@@ -12,7 +12,7 @@ echo "=================================="
 
 while true
 do
-    java -jar ${JAR} nogui -Xms$MEMORY -Xmx$MEMORY -XX:+UseG1GC -XX:+DisableExplicitGC
+    java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -XX:+UseG1GC -XX:+DisableExplicitGC -jar ${JAR}
     if [ "$RESTART" = "true" ]; then
         echo "Server stopped, restarting instance in 3 seconds..."
         sleep 3
